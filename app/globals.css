@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+:root {
+  --background: #275FF3;
+  --foreground: white;
+}
+
+body {
+  background-color: var(--background);
+}
+
+.meme-text h2 {
+  font-family: Anton;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100vw;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-size: clamp(1.875rem, 5.25vh + 1.219rem, 4.5rem);
+  line-height: clamp(2.813rem, 6.075vh + 2.053rem, 5.85rem);
+}
+
+.countdown-text {
+  font-family: Anton;
+  font-size: clamp(1.875rem, 5.25vh + 1.219rem, 4.5rem);
+  line-height: clamp(2.813rem, 6.075vh + 2.053rem, 5.85rem);
+}
+
+@media (max-width: 1000px) {
+  .meme-text h2 {
+    font-size: clamp(1.875rem, 5.25vw + 1.219rem, 4.5rem);
+    line-height: clamp(2.813rem, 6.075vw + 2.053rem, 5.85rem);
+  }
+
+  .countdown-text {
+    font-size: clamp(1.875rem, 5.25vw + 1.219rem, 4.5rem);
+    line-height: clamp(2.813rem, 6.075vw + 2.053rem, 5.85rem);
+  }
+}
+
+
+
+.meme-text h2:first-child {
+  -webkit-text-stroke: 10px #000;
+  -webkit-text-fill-color: white;
+}
+
+.meme-text h2:nth-child(2) {
+  position: absolute;
+  top: 8px;
+  left: 0px;
+  -webkit-text-stroke: 10px #000;
+  -webkit-text-fill-color: black;
+}
+
+
+.meme-text h2:last-child {
+  position: absolute;
+  top: 0;
+  color: white;
+}
+
+
+.gif {
+  -webkit-transition: all .2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -o-transition: all .2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all .2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+
+.gif_selector {
+  height: 35vh;
+  max-height: 275px !important;
+}
+
+.gif_selector img {
+  width: auto;
+  height: 100%;
+}
+
+.gif-selected {
+  scale: 1.05;
+  rotate: var(--r);
+  outline: solid 4px black;
+  border-radius: 1px;
+}
+
+/* Initially hide GIF slides before GSAP animation */
+.embla__slide {
+  opacity: 0;
+  -webkit-transform: translateY(30px);
+  -ms-transform: translateY(30px);
+  transform: translateY(30px);
+}
+
+/* Override for when animation is complete */
+.embla__slide.animated {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.result_gif {
+  height: 50vh;
+}
+
+.result_gif img {
+  height: 50vh;
+  max-height: none;
+  width: auto;
+}
