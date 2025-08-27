@@ -10,9 +10,6 @@ import Button from './components/Button';
 import { CameraMotionWarmer } from './utils/CameraMotionWarmer';
 
 export default function Home() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [passwordInput, setPasswordInput] = useState('');
-  const [passwordError, setPasswordError] = useState('');
 
   const [capturedImage, setCapturedImage] = useState(null);
   const [selectedGif, setSelectedGif] = useState(null);
@@ -44,20 +41,8 @@ export default function Home() {
   const cameraTimeoutRef = useRef(null);
   const [warmingLogs, setWarmingLogs] = useState([]);
 
-  const handlePasswordSubmit = (e) => {
-    e.preventDefault();
-    if (passwordInput === 'memebership') {
-      setIsAuthenticated(true);
-      setPasswordError('');
-    } else {
-      setPasswordError('Incorrect password');
-      setPasswordInput('');
-    }
-  };
 
   useEffect(() => {
-    if (!isAuthenticated) return;
-
     startCamera();
     loadGifs();
 
@@ -117,7 +102,7 @@ export default function Home() {
         document.removeEventListener('click', handleUserInteraction);
       }
     };
-  }, [isAuthenticated]);
+  }, []);
 
   const generateFallbackGifs = async () => {
     // Try to get actual available GIF files from the server
@@ -650,51 +635,8 @@ export default function Home() {
     }
   };
 
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-dvh w-dvw flex items-center justify-center p-4 overflow-hidden">
-        <div>
-          <div className="bg-burst"></div>
-          <div className="bg-colorchange"></div>
-          <div className="bg-overlay"></div>
-        </div>
-        <div className="max-w-lg w-full z-50">
-          <div className="win98popup shadow">
-            <div className="bar">
-              <p>Authentication Required</p>
-            </div>
-            <section className="p-4 w-full">
-              <form onSubmit={handlePasswordSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="password" className="block text-sm font-medium mb-2">
-                    Enter Password:
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    value={passwordInput}
-                    onChange={(e) => setPasswordInput(e.target.value)}
-                    className="shadow-inv w-full px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black bg-white"
-                    autoFocus
-                  />
-                </div>
-                {passwordError && (
-                  <div className="text-red-500 text-sm">{passwordError}</div>
-                )}
-                <button className="shadow" style={{ "margin-left": 0 }}>
-                  <p className="mx-3 my-1"><u>E</u>nter</p>
-                </button>
-              </form>
-            </section>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-dvh relative overflow-hidden">
-
       <div>
         <div className="bg-burst"></div>
         <div className="bg-colorchange"></div>
